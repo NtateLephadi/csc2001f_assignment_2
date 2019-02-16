@@ -1,4 +1,4 @@
-LIB = ../lib
+LIB = lib
 SRCDIR = src
 BINDIR = bin
 TESTDIR = test
@@ -23,7 +23,7 @@ vpath %.class $(BINDIR)
 .java.class:
 	$(JAVAC)  $(JFLAGS)  $<
 
-all: BinaryTreeNode.class BinaryTree.class BinarySearchTree.class AVLTree.class PrintIt.class SearchAVL.class SearchIt.class Experiment.class TestBinaryTreeNode.class TestBinaryTree.class TestBinarySearchTree.class TestAVLTree.class TestSearchAVL.class TestSearchIt.class TestPrintIt.class TestSuite.class TestRunner.class  
+all: BinaryTreeNode.class BinaryTree.class BinarySearchTree.class AVLTree.class PrintIt.class SearchAVL.class SearchIt.class Experiment.class TestBinaryTreeNode.class TestBinaryTree.class TestBinarySearchTree.class TestAVLTree.class TestSearchAVL.class TestSearchIt.class TestPrintIt.class TestSuite.class TestRunner.class
 
 default: -d $(BINDIR) $(ALL)
 
@@ -39,10 +39,7 @@ jacoco.exec: test_classes
 	java -ea -javaagent:$(LIB)/jacoco/jacocoagent.jar -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite
 
 report: jacoco.exec
-	java -cp $(BINDIR):$(CLI):$(JACOCO):$(ASM):$(TOOLS) Report --reporttype html .
-
-experiment:
-	java -cp $(BINDIR) Experiment
+	java -cp $(BINDIR):$(CLI):$(JACOCO):$(ASM):$(TOOLS) Report --reporttype html 
 
 avl:
 	java -cp $(BINDIR) SearchAVL
